@@ -2,21 +2,35 @@ package algorithm;
 
 public class Mergesort {
 
-	int[] a;
+	private int[] a;
+	private int count;
 	public Mergesort(int[] in_a) {
 		this.a = in_a;
 		this.mergeSort(0, this.a.length - 1);
+		this.count = 0;
 	}
 	
 	public int[] getSortedArray() {
 		return this.a;
 	}
+	
+	public int getCount() {
+		return this.count;
+	}
+	
+	/**
+	 * mergeSort use recursive calling to divide the array into single part
+	 * and then use the merge to conquer 
+	 * @param s starting index of sorting
+	 * @param e end index of sorting
+	 */
 	private void mergeSort(int s,int e) {
 		if(s < e) {
 			int h = (s + e) / 2;
 			this.mergeSort(s,h);
 			this.mergeSort(h+1,e);
 			this.merge(s,h,e);
+			this.count++;
 		}
 	}
 	
@@ -27,8 +41,7 @@ public class Mergesort {
 	 * @param e2 end index of second sub array
 	 */
 	private void merge(int s1, int e1, int e2) {
-		System.out.println(s1 + " " + e1 +" " + e2);
-		int a1_len = s1 - e1 + 1, a2_len = e2 - e1;
+		int a1_len = e1 - s1 + 1, a2_len = e2 - e1;
 		
 		// declare sentinel value for possible problems due to different size of array
 		int sen = 1;
@@ -40,18 +53,19 @@ public class Mergesort {
 		int[] a1 = new int[a1_len + 1];
 		int[] a2 = new int[a2_len + 1];
 		// create temporary array for sorting and then merge them together
-		for(int i = 0; i < a1.length; i ++) {
+		for(int i = 0; i < a1.length - 1; i ++) {
 			a1[i] = a[s1 + i];
 		}
-		for(int i = 0; i < a2.length; i ++) {
+		for(int i = 0; i < a2.length - 1; i ++) {
 			a2[i] = a[e1 + 1 + i];
 		}
 		// last element of array is sentinel value which is larger than any other values in array
+		// sentinel value will not enter the array due to the loop time is actually the sum of two array
 		a1[a1.length - 1] = sen;
 		a2[a2.length - 1] = sen;
 		int t1 = 0, t2 = 0;
-		for(int i = s1; i <= e1 ; i++) {
-			if(a1[t1] < this.a[t2]) {
+		for(int i = s1; i <= e2 ; i++) {
+			if(a1[t1] < a2[t2]) {
 				this.a[i] = a1[t1];
 				t1++;
 			}else {
