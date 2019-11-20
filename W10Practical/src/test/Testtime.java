@@ -18,7 +18,7 @@ public class Testtime {
 		int[] a;
 		PrintWriter writer = new PrintWriter(new File("sort.txt"));
 		writer.println("Number of elements\tMerge Sort\tSelection Sort");
-		for(int i =  1; i<= 500; i++) {
+		for(int i =  1; i<= 100; i++) {
 			// create the array size depend on the loop
 			a = new int[i];
 			
@@ -33,7 +33,7 @@ public class Testtime {
 			;
 			
 			// print amount of time of two algorithms together with size of array in standard form
-			writer.println(i + "\t" + merge.getDuration() + "\t" + selection.getDuration());
+			writer.println(i + "\t" + merge.getCount() + "\t" + selection.getCount());
 			
 		}
 		writer.close();

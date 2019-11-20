@@ -6,8 +6,10 @@ public class Selectionsort {
 	private long st;
 	private long et;
 	private long dur;
+	private int count;
 	
 	public Selectionsort(int[] in_a){
+		this.count = 0;
 		this.a = in_a;
 		this.st = System.nanoTime();
 		this.sort();
@@ -21,6 +23,10 @@ public class Selectionsort {
 	
 	public long getDuration() {
 		return this.dur;
+	}
+	
+	public int getCount() {
+		return this.count;
 	}
 	
 	/**
@@ -38,11 +44,14 @@ public class Selectionsort {
 				if(min > this.a[j]) {
 					min = this.a[j];
 					min_l = j;
+					this.count += 2;
 				}
+				this.count += 2;
 			}
 			int temp = this.a[i];
 			this.a[i] = this.a[min_l];
 			this.a[min_l] = temp;
+			this.count += 6;
 		}
 	}
 }

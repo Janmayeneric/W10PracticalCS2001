@@ -6,8 +6,10 @@ public class Mergesort {
 	private long st;
 	private long et;
 	private long dur;
+	private int count;
 	
 	public Mergesort(int[] in_a) {
+		this.count = 0;
 		this.a = in_a;
 		this.st = System.nanoTime();
 		this.mergeSort(0, this.a.length - 1);
@@ -22,6 +24,11 @@ public class Mergesort {
 	public long getDuration() {
 		return this.dur;
 	}
+	
+	
+	public int getCount() {
+		return this.count;
+	}
 	/**
 	 * mergeSort use recursive calling to divide the array into single part
 	 * and then use the merge to conquer 
@@ -34,7 +41,9 @@ public class Mergesort {
 			this.mergeSort(s,h);
 			this.mergeSort(h+1,e);
 			this.merge(s,h,e);
+			this.count ++;
 		}
+		this.count++;
 	}
 	
 	/**
@@ -55,18 +64,22 @@ public class Mergesort {
 		}
 		int[] a1 = new int[a1_len + 1];
 		int[] a2 = new int[a2_len + 1];
+		count += 7;
 		// create temporary array for sorting and then merge them together
 		for(int i = 0; i < a1.length - 1; i ++) {
 			a1[i] = a[s1 + i];
+			count += 3;
 		}
 		for(int i = 0; i < a2.length - 1; i ++) {
 			a2[i] = a[e1 + 1 + i];
+			count += 3;
 		}
 		// last element of array is sentinel value which is larger than any other values in array
 		// sentinel value will not enter the array due to the loop time is actually the sum of two array
 		a1[a1.length - 1] = sen;
 		a2[a2.length - 1] = sen;
 		int t1 = 0, t2 = 0;
+		count += 4;
 		for(int i = s1; i <= e2 ; i++) {
 			if(a1[t1] < a2[t2]) {
 				this.a[i] = a1[t1];
@@ -75,6 +88,7 @@ public class Mergesort {
 				this.a[i] = a2[t2];
 				t2++;
 			}
+			count += 5;
 		}
 	}
 }
