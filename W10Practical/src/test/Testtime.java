@@ -18,7 +18,7 @@ public class Testtime {
 		int[] a;
 		PrintWriter writer = new PrintWriter(new File("sort.txt"));
 		writer.println("Number of elements\tMerge Sort\tSelection Sort");
-		for(int i =  1; i<= 1200; i++) {
+		for(int i =  1; i<= 5000; i++) {
 			// create the array size depend on the loop
 			a = new int[i];
 			
