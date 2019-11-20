@@ -3,21 +3,25 @@ package algorithm;
 public class Mergesort {
 
 	private int[] a;
-	private int count;
+	private long st;
+	private long et;
+	private long dur;
+	
 	public Mergesort(int[] in_a) {
 		this.a = in_a;
+		this.st = System.nanoTime();
 		this.mergeSort(0, this.a.length - 1);
-		this.count = 0;
+		this.et = System.nanoTime();
+		this.dur = this.et - this.st;
 	}
 	
 	public int[] getSortedArray() {
 		return this.a;
 	}
 	
-	public int getCount() {
-		return this.count;
+	public long getDuration() {
+		return this.dur;
 	}
-	
 	/**
 	 * mergeSort use recursive calling to divide the array into single part
 	 * and then use the merge to conquer 
@@ -30,7 +34,6 @@ public class Mergesort {
 			this.mergeSort(s,h);
 			this.mergeSort(h+1,e);
 			this.merge(s,h,e);
-			this.count++;
 		}
 	}
 	

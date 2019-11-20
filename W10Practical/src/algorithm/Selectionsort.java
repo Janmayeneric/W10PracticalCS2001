@@ -3,14 +3,24 @@ package algorithm;
 public class Selectionsort {
 
 	private int[] a;
+	private long st;
+	private long et;
+	private long dur;
 	
 	public Selectionsort(int[] in_a){
 		this.a = in_a;
+		this.st = System.nanoTime();
 		this.sort();
+		this.et = System.nanoTime();
+		this.dur = this.et - this.st;
 	}
 	
 	public int[] getArray() {
 		return this.a;
+	}
+	
+	public long getDuration() {
+		return this.dur;
 	}
 	
 	/**
