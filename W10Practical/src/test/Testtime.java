@@ -18,13 +18,13 @@ public class Testtime {
 		int[] a;
 		PrintWriter writer = new PrintWriter(new File("sort.txt"));
 		writer.println("Number of elements\tMerge Sort\tSelection Sort");
-		for(int i =  1; i<= 2500; i++) {
+		for(int i =  1; i<= 500; i++) {
 			// create the array size depend on the loop
 			a = new int[i];
 			
 			// assign the random value inside the array
 			for(int j = 0; j < i; j++) {
-				a[j] = (int)(Math.random()*10000 + 1);
+				a[j] = (int)(Math.random()*50 + 1);
 			}
 			
 			// assign the same array into the merge sort and selection sort
@@ -32,6 +32,7 @@ public class Testtime {
 			Selectionsort selection = new Selectionsort(a);
 			;
 			
+			// print amount of time of two algorithms together with size of array in standard form
 			writer.println(i + "\t" + merge.getDuration() + "\t" + selection.getDuration());
 			
 		}
