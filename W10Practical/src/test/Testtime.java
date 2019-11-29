@@ -34,6 +34,7 @@ public class Testtime {
 			
 			// print amount of time of two algorithms together with size of array in standard form
 			writer.println(i + "\t" + merge.getCount() + "\t" + selection.getCount());
+			System.out.println();
 			
 		}
 		writer.close();
