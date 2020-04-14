@@ -1,0 +1,57 @@
+Feedback for CS2001 Week 10 Practical
+
+
+1) Report
+
+Clear set of results. There is normally no need to screenshot the code, since you supply that as well as the report.
+
+2) Testing
+
+Random integer inputs, repeated after reboot to isolate JRE issues.
+
+3) Functionality and extensions 
+
+The set up and analysis of operations taken is good. This is how complexity should be assessed, in my opinion. We typically count flops (floating point operations) for a numeric algorithm, and work out the complexity from these. CPU timings are noisy (as you've shown) and factors like garbage collection can skew the results.
+
+4) Code quality
+
+Nice OO setup, with .getDuration a method of the algorithm's class.
+
+5) Overall comments
+
+Good empirical framework & analysis. Fitting curves to your spreadsheet values would be useful: you'd then have a formula for the asymptotic behavior in each case.
+
+Fitting n*log(n) in excel is hard (no such option as a trendline for a scatterplot), so here is how to do it:
+
+Arrange the data like this
+
+A    B         C           D    E
+n    merge     selection   n^2  n*log(n)
+--   ------    ---------   ---  --------
+10   time10    time10      100  23.0
+11   time 11   time11      121  26.4
+12
+13
+14
+..
+
+Now use the LINEST excel function.
+
+=INDEX(LINEST(C2:Cx,D2:Dx,TRUE,TRUE),3)
+
+=INDEX(LINEST(C2:Cx,D2:Dx,TRUE,TRUE),3)
+
+(x denotes the maximum row number)
+
+These return the coefficient of determination r^2 for the fit of your time data to n^2 or n*log(n) of the sorted array size.
+
+They should both be close to 1 (i.e. 0.9998765), since selection IS quadratic and merge IS n*log(n). If they don't, you have done something wrong. Clearly, this approach generalises to more complicated complexities such as n^3*log(log(n)).
+
+
+
+
+
+
+
+
+
